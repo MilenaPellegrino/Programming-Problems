@@ -1,0 +1,72 @@
+
+________________________________________________________________________
+
+- a<<b = a * 2^b 
+- 1<<b = 2^b			HACER POTENCIAS DE 2 2*b
+- a<<1 = a * 2			MULTIPLICAR UN ENTERO POR DOS 
+
+- a>>b = a / 2^b		DIVIDIR A / POT DE DOS CON RED. HA. ABAJO
+- a>>1 = a / 2			DIVIDIR A / 2 CON REDONDEO HACIA ABAJO 
+
+________________________________________________________________________
+
+ACTIVAR EL J-ESIMO ELEMENTO
+UTILIZANDO DEL | (ES 0 SI LOS DOS SON 0)
+
+Por ejemplo si quiero activar el bit 3 empezando desde la derecha  
+1<<3 | num 
+
+s = 34 = 100010 
+j = 3, 1<<j = 001000
+s = 42 = 101010 (haciendo el or)
+
+________________________________________________________________________
+
+COMPROBAR SI EL ELEMENTO J-ESIMO ESTA ACTIVADO 
+UTILIZACION DEL & (ES 1 SI LOS DOS SON 1)
+
+Por ejempo si quiero comprobar si el bit 3 empezando de la derecha esta activado 
+1<<3 & num
+
+s = 42 = 101010 
+j = 3, 1<<3 = 001000
+T = 8 = 001000 (despues de hacer el and ) COMO EL RESULTADO NO ES TODO 0, EL TERCER ELEMENTO ESTA ACTIVADO 
+
+________________________________________________________________________
+
+LIMPIAR/DESACTIVAR EL J-ESIMO ELEMENTO 
+UTILIZANDO &= ~
+
+~(1<<j) & num 
+
+s = 42 = 101010 
+j = 1, ~(111101)
+s = 40 = 101000  (hacinedo el &)
+
+________________________________________________________________________
+
+PARA CONMUTAR (INVERTIR EL ESTADO) EL J-ESIMO ELEMENTO 
+UTILIZANDO XOR: S^= (1<<J) (EL XOR ES 1 SI LOS DOS SON DIFERENTES)
+
+S= 40 = 101000
+J = 2, (1<<J) = 000100
+S= 44 = 101100 (HACIENDO EL XOR)
+
+________________________________________________________________________
+
+PARA OBTENER EL VALOR DEL BIT MENOS SIGNIFICATIVO DE S QUE ESTA ACTIVADO 
+ES DECIR EL PRIMER BIT POR LA DERECHA 
+UTILIZANDO T = (S&(-S))
+
+S = 40 = 000...000101000
+-S = -40 = 111...111010111
+T = 8 = 000...000001000 (DESPUES DE HACER EL AND) EL TERCER BIT ESTA ACTIVADO 
+
+
+________________________________________________________________________
+
+PARA CONTAR CUANTOS BITS ESTAN ACTIVADOS EN S 
+
+__builtin_popcount(s)
+
+

@@ -1,0 +1,29 @@
+
+// Encontrar el minimo num que es divisible por b a partir de a (a/b) 
+// Por ejemplo con 10/4 me diria 12 que es el primero numero a partir de a por el cual es divisible
+/*
+si a no es divisible por b, entonces el siguiente número que es divisible por b es:
+ a + (b - a % b). 
+ Este enfoque garantiza que el resultado sea divisible por b con la menor cantidad de incrementos posible.
+ Ejemplo de uso en diviisbility2.cpp 
+*/
+
+
+// La suma de 1 +2 + 3 ... + n
+//    n(n+1) / 2
+
+
+// x^1 + x^2 + .. + x^n 
+// (x^(n +1) - 1) / (x - 1) 
+// (1 - x^(n+1)) / (1-x) 
+
+
+// 2^1 + 2^2 + .. + 2^n
+// 2^(n+1) - 1
+
+// Potencia a^b mas eficiente en O(Log B)
+/*
+         (a ^ [b/2]) ^ 2   --> si B es PAR
+a ^ b =             (Con la division de b/2 para abajo no la techo)
+         a * (A^(b/2)) ^ 2  --> si B es IMPAR 
+*/

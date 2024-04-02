@@ -1,0 +1,25 @@
+
+
+________________________________________________________________________
+
+STACK 
+Ultimo en entrar primero en salir 
+utlizando .pop() o .push() .top() (obtener el contenido de la parte superior)
+
+
+________________________________________________________________________
+
+QUEUE 
+Inserta al final, y eliminar lo del principio 
+Primero en entrar, primero  en salir 
+front(), back()
+
+________________________________________________________________________
+
+DEQUE (Cola de dos extremos)
+insertar y erliminar del princpio o del final
+push_back(), pop_front(), push_front(), pop_back()
+
+________________________________________________________________________
+
+PRIORITY QUEUE (Cola de propiedad)
