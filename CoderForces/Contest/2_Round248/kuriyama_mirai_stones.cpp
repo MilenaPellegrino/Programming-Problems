@@ -22,26 +22,31 @@ using vll = vector<ll>;
 using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
-int maxSubArraySumFromPrefix(vector<int>& prefix_sum, int n) {
-    int max_sum = prefix_sum[1]; 
-    int min_prefix_sum = prefix_sum[1]; 
-
-    for (int i = 1; i < n; ++i) {
-        max_sum = max(max_sum, prefix_sum[i] - min_prefix_sum);
-        min_prefix_sum = min(min_prefix_sum, prefix_sum[i]);
-    }
-
-    return max_sum;
-}
-
 void solve(){
-	int n; cin>>n; 
-	vii a(n+1, 0);
+	ll n; cin>>n; 
+	vll v2(n);
+	vll v1(n+1, 0); 
 	fore(i, 1, n+1){
-		int ai; cin>>ai;
-		a[i]= a[i-1] + ai;
+		ll ai; cin>>ai;
+		v2[i-1] = ai;
+		v1[i] = v1[i-1] + ai;
 	}
-	pri(maxSubArraySumFromPrefix(a, n+1));
+	ll m; cin>>m;
+	sort(all(v2));
+	vll v2s(n+1, 0);
+	fore(i, 1, n+1){
+		v2s[i] = v2s[i-1] + v2[i-1];
+	}
+	while(m--){
+		ll t, l, r; cin>>t>>l>>r;
+		ll ans = 0;
+		if(t==1){
+			ans = v1[r] - v1[l-1];
+		} else {
+			ans = v2s[r] - v2s[l-1];
+		}
+		pri(ans);
+	}
 }
  
 int main(){
