@@ -23,17 +23,42 @@ using vll = vector<ll>;
 using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
+bool cmp(pii a, pii b){
+	if(a.fst == b.fst){
+		return a.snd < b.snd;
+	} else if(a.fst > b.fst){
+		return true;
+	} else {
+		return false;
+	}
+}
 void solve(){
-	
+	int n, k; cin>>n>>k;
+	vpi a(n);
+	map<pii, int, greater<pii>> m;
+	fore(i, 0, n){
+		int p, t; cin>>p>>t; 
+		a[i] = mp(p, t);
+		m[mp(p,t)]++;
+	}
+	sort(all(a), cmp);
+	/*cout<<"Imprimiendo el arreglo de pares: "<<endl; 
+	fore(i, 0,n){
+		cout<<a[i].fst<<" "<<a[i].snd<<endl;
+	}
+	cout<<"Imprimiendo el map"<<endl;
+	for (const auto& par : m) {
+        cout << "Clave: (" << par.first.first << ", " << par.first.second << "), Valor: " << par.second << endl;
+    } */
+	pri(m[a[k-1]]);
 }
  
 int main(){
     FIN; 
-    //int t = 1;
+    int t = 1;
     //int t; cin>>t; 
     while(t--){
 			solve();
 	}
-	cout<<"hola"<<endl;
     return 0;
 }

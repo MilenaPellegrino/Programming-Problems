@@ -23,7 +23,7 @@ int main(){
             mds.insert(aux); // mds = ab ba 
             res++; // res = 2;
         }
-        cout << res << "\n"; // 2
+        cout << res << "\n"; // 
     }
     return 0;
 }
