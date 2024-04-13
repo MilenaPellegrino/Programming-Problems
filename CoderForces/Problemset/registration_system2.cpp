@@ -8,6 +8,7 @@ using namespace std;
 #define all(x) (x).begin(),(x).end()
 #define pb push_back
 #define pp pop_back
+#define mp make_pair
 #define fst first
 #define snd second
 #define str string
@@ -24,22 +25,22 @@ template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto
 
 void solve(){
 	int n; cin>>n; 
-	string s; cin>>s; 
-	set<string> st; 
-	fore(i, 0, n-1){
-		st.insert(s.substr(i, 2));
+	map<string, int> m;
+	fore(i, 0, n){
+		string s; cin>>s;
+		if(m[s] == 0){
+			cout<<"OK \n";
+		} else {
+			cout<<s<<m[s]<<"\n";
+		}
+		m[s]++;
 	}
-	/*for(auto elem : st){
-		cout<<elem<<endl;
-	} */
-	size_t res =sz(st);
-	pri(res);
 }
  
 int main(){
     FIN; 
-    //int t = 1;
-    int t; cin>>t; 
+    int t = 1;
+    //int t; cin>>t; 
     while(t--){
 			solve();
 	}

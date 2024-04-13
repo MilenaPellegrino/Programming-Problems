@@ -8,6 +8,7 @@ using namespace std;
 #define all(x) (x).begin(),(x).end()
 #define pb push_back
 #define pp pop_back
+#define mp make_pair
 #define fst first
 #define snd second
 #define str string
@@ -22,24 +23,33 @@ using vll = vector<ll>;
 using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
+int f(char c){
+	int res = c - 'a' + 1;
+	return res;
+}
 void solve(){
-	int n; cin>>n; 
+	int n, q; cin>>n>>q; 
 	string s; cin>>s; 
-	set<string> st; 
-	fore(i, 0, n-1){
-		st.insert(s.substr(i, 2));
+	vector<int> nums(n); 
+	fore(i, 0, n){
+		nums[i] = f((s[i]));
 	}
-	/*for(auto elem : st){
-		cout<<elem<<endl;
-	} */
-	size_t res =sz(st);
-	pri(res);
+	vector<int> ps(n+1);
+	ps[0] = 0;
+	fore(i, 1, n+1){
+		ps[i] = ps[i-1] + nums[i-1];
+	}
+	int l = 0, r = 0; 
+	while(q--){
+		cin>>l>>r;
+		pri(ps[r] - ps[l-1]);
+	}
 }
  
 int main(){
     FIN; 
-    //int t = 1;
-    int t; cin>>t; 
+    int t = 1;
+    //int t; cin>>t; 
     while(t--){
 			solve();
 	}

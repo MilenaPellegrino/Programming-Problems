@@ -34,6 +34,5 @@ int main(){
     while(t--){
 			solve();
 	}
-	cout<<"hola"<<endl;
     return 0;
 }
