@@ -24,15 +24,25 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	
+	ll n; cin>>n; 
+	vll frec(n+1, 0);
+	ll res = -1;
+	fore(i, 0, n){
+		ll ai; cin>>ai;
+		frec[ai]++;
+		if(frec[ai] >=3){
+			res = ai; 
+		}
+	}
+	pri(res);
 }
  
 int main(){
     FIN; 
     //int t = 1;
-    //int t; cin>>t; 
+    int t; cin>>t; 
     while(t--){
-		solve();
+			solve();
 	}
     return 0;
 }

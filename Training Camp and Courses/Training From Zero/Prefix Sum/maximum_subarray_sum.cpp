@@ -8,7 +8,6 @@ using namespace std;
 #define all(x) (x).begin(),(x).end()
 #define pb push_back
 #define pp pop_back
-#define mp make_pair
 #define fst first
 #define snd second
 #define str string
@@ -24,15 +23,28 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	
+	int n; cin>>n; 
+	vll a(n); 
+	vll sp(n+1);
+	sp[0] = 0;
+	fore(i, 1,n+1){
+		ll si; cin>>si;
+		sp[i] = sp[i-1] + si;
+	}
+	ll res = sp[1], min_ant = 0;
+	fore(i, 1, n+1){
+		res = max(res, sp[i] - min_ant);
+		min_ant = min(min_ant, sp[i]);
+	}
+	pri(res);
 }
  
 int main(){
     FIN; 
-    //int t = 1;
+    int t = 1;
     //int t; cin>>t; 
     while(t--){
-		solve();
+			solve();
 	}
     return 0;
 }

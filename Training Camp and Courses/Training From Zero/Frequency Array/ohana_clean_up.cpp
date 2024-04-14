@@ -24,12 +24,23 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	
+	int n; cin>>n; 
+	// 1 -> clean, 0 -> dirty
+	map<string, int> m;
+	fore(i, 0, n){
+		string s; cin>>s;
+		m[s]+=1; 
+	}
+	auto itMax = max_element(all(m), 
+	[]( auto& par1, const auto& par2){
+		return par1.snd < par2.snd;
+	});
+	pri(itMax -> snd);
 }
  
 int main(){
     FIN; 
-    //int t = 1;
+    int t = 1;
     //int t; cin>>t; 
     while(t--){
 		solve();

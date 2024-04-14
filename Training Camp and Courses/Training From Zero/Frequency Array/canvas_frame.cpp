@@ -24,12 +24,22 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	
+	int n; cin>>n; 
+	vii frec(101, 0);
+	fore(i,0,n){
+		int ai; cin>>ai;
+		frec[ai]++;
+	}
+	int sum = 0;
+	fore(i, 0, 101){
+		sum += frec[i]/2;
+	}
+	pri(sum/2);
 }
  
 int main(){
     FIN; 
-    //int t = 1;
+    int t = 1;
     //int t; cin>>t; 
     while(t--){
 		solve();

@@ -24,12 +24,31 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
+	ll n; cin>>n; 
+	vll a(n); fore(i, 0, n) cin>>a[i];
+	vll ps(n+1);
+	ps[0] = 0;
+	fore(i, 1, n+1){
+		ps[i] = ps[i-1] + a[i-1];
+	}
+	//cout<<ps<<endl;
+	ll count = 0;
+	ll sumr = ps[1];
+	fore(i, 1, n){
+		sumr = ps[i];
+		//db(i); db(count); db(sumr); db(ps[n] - ps[i]);
+		if((sumr == ps[n] - ps[i] )){
+			count++;
+		}
+		
+	}
 	
+	pri(count);
 }
  
 int main(){
     FIN; 
-    //int t = 1;
+    int t = 1;
     //int t; cin>>t; 
     while(t--){
 		solve();
