@@ -24,26 +24,25 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	int n, m; cin>>n>>m;
-	int maxl = 0; 
-	set<string> st
-	fore(i,0, n){
-		fore(j, 0, m){
-			string s; cin>>s;
-			st.insert(s);
+	int n, q; cin>>n>>q; 
+	vll a(n); fore(i, 0, n)cin>>a[i];
+	vll sump(n+1, 0); sump[0]=0; 
+	fore(i, 1, n+1){ sump[i] = sump[i-1]+a[i-1]; }
+	fore(i, 0, q){
+		ll l, r, k; cin>>l>>r>>k;
+		ll res = sump[n] - (sump[r]- sump[l-1]) + (r-(l+1))*k;
+		if((res%2) == 0){
+			cout<<"NO\n";
+		} else{
+			cout<<"YES\n";
 		}
-	}
-	if(sz(st) == ){
-		pri(-1);
-	} else {
-		pri(sz(st));
 	}
 }
  
 int main(){
     FIN; 
-    int t = 1;
-    //int t; cin>>t; 
+    //int t = 1;
+    int t; cin>>t; 
     while(t--){
 		solve();
 	}

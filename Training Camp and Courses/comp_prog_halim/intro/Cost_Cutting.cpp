@@ -24,28 +24,24 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	int n, m; cin>>n>>m;
-	int maxl = 0; 
-	set<string> st
-	fore(i,0, n){
-		fore(j, 0, m){
-			string s; cin>>s;
-			st.insert(s);
-		}
-	}
-	if(sz(st) == ){
-		pri(-1);
-	} else {
-		pri(sz(st));
-	}
+	int a, b, c; cin>>a>>b>>c; 
+	vii med;
+	med.pb(a);med.pb(b); med.pb(c);
+	//cout<<med<<endl;
+	sort(all(med));
+	cout<<" "<<med[1];
 }
  
 int main(){
     FIN; 
-    int t = 1;
-    //int t; cin>>t; 
-    while(t--){
+    //int t = 1;
+    int t; cin>>t; 
+    int i = 1;
+    while(i<=t){
+		cout<<"\n";
+		cout<<"Case "<<i<<": ";
 		solve();
+		i++;
 	}
     return 0;
 }

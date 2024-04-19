@@ -24,20 +24,40 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	int n, m; cin>>n>>m;
-	int maxl = 0; 
-	set<string> st
-	fore(i,0, n){
-		fore(j, 0, m){
-			string s; cin>>s;
-			st.insert(s);
+	int n, k; cin>>n>>k; 
+	vii au, a(n); fore(i, 0, n)cin>>a[i];
+	vii sle(n); fore(i, 0, n) cin>>sle[i];
+	// Hacemos el arreglo con todas las veces que esta durmiendo 
+ 	fore(i, 1, n+1){
+		if(sle[i-1] == 0){
+			au.pb(a[i-1]);
+		} else {
+			au.pb(0);
 		}
 	}
-	if(sz(st) == ){
-		pri(-1);
-	} else {
-		pri(sz(st));
+	vii ps(sz(au)+1);
+	ps[0]=0;
+	//db(sz(au));
+	// Arreglo de usmas parciales del vector donde esta durmiendo 
+	fore(i, 1, sz(au)+1){
+		ps[i] = ps[i-1] + au[i-1];
 	}
+	//cout<<au<<endl;
+	//cout<<ps<<endl;
+	int sum_awake = 0; // suma cuando esta despierto en general
+	fore(i, 1, n+1){
+		if(sle[i-1] == 1)sum_awake +=a[i-1];
+	}
+	//db(sum_awake);
+	// Buscamos el maximo que le puedo sumar a mi suma general, usando que puedo despertarlo
+	int sum_sleep = 0;
+	fore(i, k, n+1){
+		int maux = ps[i] - ps[i-k];
+		if(maux>= sum_sleep){
+			sum_sleep = maux;
+		}
+	}
+	pri(sum_awake + sum_sleep);
 }
  
 int main(){

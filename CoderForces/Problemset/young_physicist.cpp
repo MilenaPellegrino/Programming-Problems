@@ -24,19 +24,16 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	int n, m; cin>>n>>m;
-	int maxl = 0; 
-	set<string> st
-	fore(i,0, n){
-		fore(j, 0, m){
-			string s; cin>>s;
-			st.insert(s);
-		}
+	int n; cin>>n; 
+	int x =0, y=0, z=0;
+	fore(i, 0, n){
+		int xi, yi, zi; cin>>xi>>yi>>zi;
+		x+= xi; y +=yi; z += zi;
 	}
-	if(sz(st) == ){
-		pri(-1);
-	} else {
-		pri(sz(st));
+	if((x==0) && (y==0) && (z==0)){
+		cout<<"YES\n";
+	} else{
+		cout<<"NO\n";
 	}
 }
  

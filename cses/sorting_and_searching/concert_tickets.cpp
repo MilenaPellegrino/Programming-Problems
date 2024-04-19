@@ -9,6 +9,7 @@ using namespace std;
 #define pb push_back
 #define pp pop_back
 #define mp make_pair
+#define lb lower_bound
 #define fst first
 #define snd second
 #define str string
@@ -25,18 +26,19 @@ template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto
 
 void solve(){
 	int n, m; cin>>n>>m;
-	int maxl = 0; 
-	set<string> st
-	fore(i,0, n){
-		fore(j, 0, m){
-			string s; cin>>s;
-			st.insert(s);
+	vii h(n); fore(i, 0, n) cin>>h[i];
+	sort(all(h));
+	vii t(n); 
+	fore(i, 0, m){
+		int ti; cin>>ti; 
+		auto it = lb(all(h), ti);
+		if(*it == ti){
+			pri(*it);
+			
+		} else{
+			
 		}
-	}
-	if(sz(st) == ){
-		pri(-1);
-	} else {
-		pri(sz(st));
+		cout<<*it<<endl;
 	}
 }
  

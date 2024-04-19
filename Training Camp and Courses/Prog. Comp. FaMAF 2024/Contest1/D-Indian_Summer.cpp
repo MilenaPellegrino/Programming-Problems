@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+r#include<bits/stdc++.h>
 using namespace std;
 #define fore(i,a,b) for(int i=(a);i<(b);i++)
 #define forr(i, a, b) for(int i=(b);i>(a);i--)
@@ -24,20 +24,15 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	int n, m; cin>>n>>m;
-	int maxl = 0; 
-	set<string> st
-	fore(i,0, n){
-		fore(j, 0, m){
-			string s; cin>>s;
-			st.insert(s);
-		}
+	ll n; cin>>n;
+	string s1, s2, s;
+	set<string> st;
+	while(n--){
+		cin>>s1>>s2;
+		s = s1+" "+s2;
+		st.insert(s);
 	}
-	if(sz(st) == ){
-		pri(-1);
-	} else {
-		pri(sz(st));
-	}
+	pri(st.size());
 }
  
 int main(){

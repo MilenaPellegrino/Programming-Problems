@@ -24,26 +24,62 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	int n, m; cin>>n>>m;
-	int maxl = 0; 
-	set<string> st
-	fore(i,0, n){
-		fore(j, 0, m){
-			string s; cin>>s;
-			st.insert(s);
+	string s1; cin>>s1;
+	string s2; cin>>s2;
+	ll count1=0, count2 = 0;
+	char l1, l2;
+	fore(i, 0, sz(s1)){
+		if(s1[i] == 'X'){
+			count1++;
+		} else {
+			l1 = s1[i];
 		}
 	}
-	if(sz(st) == ){
-		pri(-1);
-	} else {
-		pri(sz(st));
+	fore(i, 0, sz(s2)){
+		if(s2[i] == 'X'){
+			count2++;
+		}else{
+			l2 = s2[i];
+		}
 	}
+	//db(l1); db(l2);
+	//db(count1); db(count2);
+	if(l1 == l2 && (l1 != 'S')){
+		if(count1 <count2){
+			cout<<"<\n";
+		} else if(count1>count2) {
+			cout<<">\n";
+		} else if (count1 == count2){
+			cout<<"=\n";
+		}
+		return;
+	} 
+		if(l1 == l2 && (l1 == 'S')){
+		if(count1 <count2){
+			cout<<">\n";
+		} else if(count1>count2) {
+			cout<<"<\n";
+		} else if (count1 == count2){
+			cout<<"=\n";
+		}
+		return;
+	} 
+	if (l1 == 'S'){
+		cout<<"<\n";
+	} else if (l1 == 'L'){
+		cout<<">\n";
+	} else if (l1 == 'M' && l2 == 'L'){
+		cout<<"<\n";
+	} else if(l1 == 'M' && l2=='S'){
+		cout<<">\n";
+	}
+	
 }
  
 int main(){
     FIN; 
-    int t = 1;
-    //int t; cin>>t; 
+    //int t = 1;
+    int t; cin>>t; 
     while(t--){
 		solve();
 	}

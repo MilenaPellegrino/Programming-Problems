@@ -24,19 +24,19 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	int n, m; cin>>n>>m;
-	int maxl = 0; 
-	set<string> st
-	fore(i,0, n){
-		fore(j, 0, m){
-			string s; cin>>s;
-			st.insert(s);
-		}
+	int n; cin>>n; 
+	vll ps(n+1);
+	ps[0] = 0; 
+	fore(i, 1, n+1){
+		int ai; cin>>ai; 
+		ps[i] = ps[i-1] + ai;
 	}
-	if(sz(st) == ){
-		pri(-1);
-	} else {
-		pri(sz(st));
+	int m; cin>>m; 
+	fore(i, 0, m){
+		int q; cin>>q; 
+		auto it = lower_bound(all(ps), q);
+		int pos = it - ps.begin();
+		pri(pos);
 	}
 }
  

@@ -23,21 +23,26 @@ using vll = vector<ll>;
 using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
+int f(char c){
+	int res = c - 'a';
+	return res;
+}
 void solve(){
-	int n, m; cin>>n>>m;
-	int maxl = 0; 
-	set<string> st
-	fore(i,0, n){
-		fore(j, 0, m){
-			string s; cin>>s;
-			st.insert(s);
+	int n; cin>>n; 
+	string s; cin>>s; 
+	vii low(26, 0);
+	vii upp(26, 0);
+	fore(i, 0, (2*n)-2){
+		if(i%2 == 0){
+			low[f(s[i])]++;
+		} else {
+			s[i] = tolower(s[i]);
+			cout<<s[i]<<endl;
+			upp[f(s[i])]++;
 		}
 	}
-	if(sz(st) == ){
-		pri(-1);
-	} else {
-		pri(sz(st));
-	}
+	//cout<<f('a')<<endl<<f('b')<<endl<<f('l');
+	cout<<low<<endl<<upp<<endl;
 }
  
 int main(){

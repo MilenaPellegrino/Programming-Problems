@@ -24,20 +24,23 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	int n, m; cin>>n>>m;
-	int maxl = 0; 
-	set<string> st
-	fore(i,0, n){
-		fore(j, 0, m){
-			string s; cin>>s;
-			st.insert(s);
+	ll n, x; cin>>n>>x; 
+	vll g(n); fore(i, 0, n)cin>>g[i]; 
+	sort(all(g));
+	ll i = 0, j=n-1;
+	ll count = 0;
+	while(i<=j){
+		ll sum = g[i] + g[j]; 
+		if(sum>x){
+			j--; 
+			count++;
+		} else{
+			i++; 
+			j--;
+			count++;
 		}
 	}
-	if(sz(st) == ){
-		pri(-1);
-	} else {
-		pri(sz(st));
-	}
+	pri(count);
 }
  
 int main(){

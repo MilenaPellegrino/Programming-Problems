@@ -22,28 +22,27 @@ using vii = vector<int>;
 using vll = vector<ll>;
 using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
-
+ 
+const int MAXN = 1001;
+vii a;
 void solve(){
-	int n, m; cin>>n>>m;
-	int maxl = 0; 
-	set<string> st
-	fore(i,0, n){
-		fore(j, 0, m){
-			string s; cin>>s;
-			st.insert(s);
-		}
-	}
-	if(sz(st) == ){
-		pri(-1);
-	} else {
-		pri(sz(st));
-	}
+	int k; cin>>k;
+	pri(a[k-1]);
 }
  
 int main(){
-    FIN; 
-    int t = 1;
-    //int t; cin>>t; 
+    FIN;
+    int i = 0;
+    int len = MAXN;
+    while(i<len){
+		if((i%3 != 0) || (i%10) != 3){
+			a.pb(i);
+		} else{
+			len++;
+		}
+		i++;
+	}
+    int t; cin>>t; 
     while(t--){
 		solve();
 	}
