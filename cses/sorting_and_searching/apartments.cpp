@@ -24,23 +24,33 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	int n, m, k; cin>>n>>m>>k;
-	vii ap(n); fore(i, 0, n) cin>>ap[i];
-	set<pii> s;
-	fore(i, 0, m){
-		int ai; cin>>ai;
-		s.insert(mp(ai-k, ai+k));
-	}
-	sort(all(ap));
+	ll n, m, k; cin>>n>>m>>k;
+	vll a(n);
 	fore(i, 0, n){
-		auto it = lower_bound(all(s), ap[i]);
-		if(it!=s.end()){
-			int pos = it - s.begin();
-			// Vemos si esta en el rango deseado
-			if(ap[i] >=)
-		}
+		ll ai; cin>>ai;
+		//a[i] = ai-k;
+		a[i] =ai;
 	}
-	
+	sort(all(a));
+	multiset<ll> b;
+	while(m--){
+		ll bi; cin>>bi;
+		b.insert(bi);
+	}
+	cout<<a<<endl;
+	int cont = 0;
+	fore(i, 0, n){
+		forn(e, b) cout<<e<<" ";
+		auto it = b.lower_bound(a[i]);
+		//db(*it); db(a[i]); db(a[i] + 2*k);
+		if((*it >= a[i]-k )&& (*it <= a[i]+k) && it != b.end()){
+			cont++;
+			b.erase(*it);
+		}
+		db(cont);
+		cout<<"+++++++++++++++++++++++++++++++++++++++++++++"<<endl;
+	}
+	pri(cont);
 }
  
 int main(){

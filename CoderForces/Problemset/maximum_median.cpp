@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define fore(i,a,b) for(int i=(a);i<(b);i++)
+#define fore(i,a,b) for(ll i=(a);i<(b);i++)
 #define forr(i, a, b) for(int i=(b);i>(a);i--)
 #define forn(e,c) for(const auto &e : (c))
 #define db(x) cout<<#x<< " = "<<(x)<<endl
@@ -9,8 +9,6 @@ using namespace std;
 #define pb push_back
 #define pp pop_back
 #define mp make_pair
-#define lb lower_bound
-#define ub upper_bound
 #define fst first
 #define snd second
 #define str string
@@ -25,31 +23,35 @@ using vll = vector<ll>;
 using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
+ll n, k;
+vll a;
+bool can(ll x){
+	ll mov = 0;
+	fore(i, n/2, n){
+		//db(mov); db(x); db(a[i]); db(x-a[i]);
+		if(x-a[i] > 0) mov+=x-a[i];
+		if(mov > k) return false;
+	}
+	if(mov<=k)return true;
+	else return false;
+}
 void solve(){
-	ll n, m; cin>>n>>m;
-	multiset<ll> ms;
+	cin>>n>>k;
 	fore(i, 0, n){
-		ll msi; cin>>msi;
-		ms.insert(msi);
+		ll ai; cin>>ai; 
+		a.pb(ai);
 	}
-	//forn(e, ms)cout<<e<<endl;
-	vii t(n); 
-	fore(i, 0, m){
-		ll ti; cin>>ti; 
-		auto it = ms.ub(ti);
-		ll r = -1;
-		if(it!= ms.begin()){
-			it--;
-		} else {
-			pri(r);
-			continue;
-		}
-		if(it!= ms.end()){
-			r = *it;
-			ms.erase(it);
-		} 
-		pri(r);
+	sort(all(a));
+	// Binary Search
+	ll small = 1;
+	ll big = 2e9+10; 
+	while(small!=big){
+		//db(small); db(big);
+		ll mid = (small + big + 1)/2;
+		if(can(mid)) small = mid; 
+		else big = mid-1;
 	}
+	pri(small);
 }
  
 int main(){

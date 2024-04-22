@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define fore(i,a,b) for(int i=(a);i<(b);i++)
+#define fore(i,a,b) for(ll i=(a);i<(b);i++)
 #define forr(i, a, b) for(int i=(b);i>(a);i--)
 #define forn(e,c) for(const auto &e : (c))
 #define db(x) cout<<#x<< " = "<<(x)<<endl
@@ -9,8 +9,6 @@ using namespace std;
 #define pb push_back
 #define pp pop_back
 #define mp make_pair
-#define lb lower_bound
-#define ub upper_bound
 #define fst first
 #define snd second
 #define str string
@@ -25,37 +23,39 @@ using vll = vector<ll>;
 using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
-void solve(){
-	ll n, m; cin>>n>>m;
-	multiset<ll> ms;
+ll n;
+vll a;
+bool can(ll higha, ll h){
+	ll suma = 0;
 	fore(i, 0, n){
-		ll msi; cin>>msi;
-		ms.insert(msi);
+		suma += max(higha - a[i], 0LL);
+		if(suma>h) return false;
 	}
-	//forn(e, ms)cout<<e<<endl;
-	vii t(n); 
-	fore(i, 0, m){
-		ll ti; cin>>ti; 
-		auto it = ms.ub(ti);
-		ll r = -1;
-		if(it!= ms.begin()){
-			it--;
-		} else {
-			pri(r);
-			continue;
+	if(suma<=h) return true;
+	else return false;
+}
+void solve(){
+	ll x; cin>>n>>x;
+	fore(i, 0, n){
+		ll ai; cin>>ai; 
+		a.pb(ai);
+	}
+	// Binary search on the answer 
+	ll low = 0, high = 2e9+10;
+	while(low<high){
+		ll med = ((low+high) + 1) / 2; // Div techo
+		if(can(med, x)){
+			low = med;
 		}
-		if(it!= ms.end()){
-			r = *it;
-			ms.erase(it);
-		} 
-		pri(r);
+		else high = med - 1;
 	}
+	pri(low);
 }
  
 int main(){
     FIN; 
-    int t = 1;
-    //int t; cin>>t; 
+    //int t = 1;
+    int t; cin>>t; 
     while(t--){
 		solve();
 	}
