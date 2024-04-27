@@ -23,46 +23,26 @@ using vll = vector<ll>;
 using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
-//const ll MAXN = 2e5 + 10;
-bool can(ll t, vll &cnt){
-	ll com = 0, inc = 0;
-	fore(i, 0, sz(cnt)){
-		if(t>=cnt[i]){
-			inc += (t - cnt[i]) / 2;
-		} else {
-			com += cnt[i] - t;
-		}
-	}
-	return com<= inc;
-}
 void solve(){
-	ll n, m; cin>>n>>m; 
-	vll a(m); 
-	fore(i, 0, m) cin>>a[i];
-	vll cnt(m+1, 0);
-	// Binary sarch on the answer 
-	fore(i, 1, m+1){
-		cnt[a[i-1]]++;
-	} 
-	ll l = 0, r = (2*n) + 10, res = 0;
-	while(l<r){
-		ll mid = (l+r+ 1)/2;
-		if(can(mid, cnt)){
-			r = mid - 1;
-			res = mid;
+	ll n, x; cin>>n>>x; 
+	vll a(n); fore(i, 0, n) cin>>a[i];
+	int l = 0, r = 0, sum =0, cont = 0;
+	while(r<n){
+		sum += a[r];
+		while(sum>x && l<=r){
+			sum -= a[l];
+			l++;
 		}
-		else{
-			l = mid + 1;
-			res = mid;
-		}
+		if(sum == x){cont++;}
+		r++;
 	}
-	pri(res);
+	pri(cont);
 }
  
 int main(){
     FIN; 
-    //int t = 1;
-    int t; cin>>t; 
+    int t = 1;
+    //int t; cin>>t; 
     while(t--){
 		solve();
 	}

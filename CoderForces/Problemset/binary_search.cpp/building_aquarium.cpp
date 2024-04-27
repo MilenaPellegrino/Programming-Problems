@@ -24,8 +24,7 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 ll n;
-vll a;
-bool can(ll higha, ll h){
+bool can(ll higha, ll h, vll &a){
 	ll suma = 0;
 	fore(i, 0, n){
 		suma += max(higha - a[i], 0LL);
@@ -36,6 +35,7 @@ bool can(ll higha, ll h){
 }
 void solve(){
 	ll x; cin>>n>>x;
+	vll a;
 	fore(i, 0, n){
 		ll ai; cin>>ai; 
 		a.pb(ai);
@@ -43,8 +43,8 @@ void solve(){
 	// Binary search on the answer 
 	ll low = 0, high = 2e9+10;
 	while(low<high){
-		ll med = ((low+high) + 1) / 2; // Div techo
-		if(can(med, x)){
+		ll med = ((low +high) + 1) / 2; 
+		if(can(med, x, a)){
 			low = med;
 		}
 		else high = med - 1;

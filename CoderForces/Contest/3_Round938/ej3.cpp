@@ -23,40 +23,37 @@ using vll = vector<ll>;
 using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
-//const ll MAXN = 2e5 + 10;
-bool can(ll t, vll &cnt){
-	ll com = 0, inc = 0;
-	fore(i, 0, sz(cnt)){
-		if(t>=cnt[i]){
-			inc += (t - cnt[i]) / 2;
-		} else {
-			com += cnt[i] - t;
-		}
-	}
-	return com<= inc;
-}
 void solve(){
-	ll n, m; cin>>n>>m; 
-	vll a(m); 
-	fore(i, 0, m) cin>>a[i];
-	vll cnt(m+1, 0);
-	// Binary sarch on the answer 
-	fore(i, 1, m+1){
-		cnt[a[i-1]]++;
-	} 
-	ll l = 0, r = (2*n) + 10, res = 0;
-	while(l<r){
-		ll mid = (l+r+ 1)/2;
-		if(can(mid, cnt)){
-			r = mid - 1;
-			res = mid;
-		}
-		else{
-			l = mid + 1;
-			res = mid;
+	ll n, k; cin>>n>>k; 
+	vll a(n);
+	fore(i, 0, n) cin>>a[i];
+	ll cont = 0;
+	ll i = 0, j = n-1;
+	bool lef = true, band = true; // 4 5, 1 2 4 3 // i = 1, j = 3, cont = 1
+	while(band){
+		if(lef){ // elimino el primer barco
+			lef = false;
+			if(k-a[i] > 0){
+				k-=a[i];
+				cont++;
+				i++;
+			} else{
+				band = false;
+				break;
+			}
+		} else { // elimino el ultimo
+			lef = true;
+			if(k-a[j] > 0){
+				k-=a[j];
+				cont++;
+				j--;
+			} else{
+				band = false;
+				break;
+			}
 		}
 	}
-	pri(res);
+	pri(n-cont);
 }
  
 int main(){

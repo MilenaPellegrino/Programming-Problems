@@ -22,47 +22,42 @@ using vii = vector<int>;
 using vll = vector<ll>;
 using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
-
-//const ll MAXN = 2e5 + 10;
-bool can(ll t, vll &cnt){
-	ll com = 0, inc = 0;
-	fore(i, 0, sz(cnt)){
-		if(t>=cnt[i]){
-			inc += (t - cnt[i]) / 2;
-		} else {
-			com += cnt[i] - t;
-		}
+ 
+ll n, k;
+vll a;
+bool can(ll x){
+	ll mov = 0;
+	fore(i, n/2, n){
+		//db(mov); db(x); db(a[i]); db(x-a[i]);
+		if(x-a[i] > 0) mov+=x-a[i];
+		if(mov > k) return false;
 	}
-	return com<= inc;
+	if(mov<=k)return true;
+	else return false;
 }
 void solve(){
-	ll n, m; cin>>n>>m; 
-	vll a(m); 
-	fore(i, 0, m) cin>>a[i];
-	vll cnt(m+1, 0);
-	// Binary sarch on the answer 
-	fore(i, 1, m+1){
-		cnt[a[i-1]]++;
-	} 
-	ll l = 0, r = (2*n) + 10, res = 0;
-	while(l<r){
-		ll mid = (l+r+ 1)/2;
-		if(can(mid, cnt)){
-			r = mid - 1;
-			res = mid;
-		}
-		else{
-			l = mid + 1;
-			res = mid;
-		}
+	cin>>n>>k;
+	fore(i, 0, n){
+		ll ai; cin>>ai; 
+		a.pb(ai);
 	}
-	pri(res);
+	sort(all(a));
+	// Binary Search
+	ll small = 1;
+	ll big = 2e9+10; 
+	while(small!=big){
+		//db(small); db(big);
+		ll mid = (small + big + 1)/2;
+		if(can(mid)) small = mid; 
+		else big = mid-1;
+	}
+	pri(small);
 }
  
 int main(){
     FIN; 
-    //int t = 1;
-    int t; cin>>t; 
+    int t = 1;
+    //int t; cin>>t; 
     while(t--){
 		solve();
 	}

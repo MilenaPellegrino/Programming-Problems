@@ -29,7 +29,7 @@ void solve(){
 	fore(i, 0, n){
 		ll ai; cin>>ai;
 		//a[i] = ai-k;
-		a[i] =ai;
+		a.pb(ai);
 	}
 	sort(all(a));
 	multiset<ll> b;

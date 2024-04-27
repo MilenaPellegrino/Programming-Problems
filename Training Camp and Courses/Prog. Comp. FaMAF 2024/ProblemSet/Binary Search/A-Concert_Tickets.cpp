@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define fore(i,a,b) for(ll i=(a);i<(b);i++)
+#define fore(i,a,b) for(int i=(a);i<(b);i++)
 #define forr(i, a, b) for(int i=(b);i>(a);i--)
 #define forn(e,c) for(const auto &e : (c))
 #define db(x) cout<<#x<< " = "<<(x)<<endl
@@ -9,6 +9,8 @@ using namespace std;
 #define pb push_back
 #define pp pop_back
 #define mp make_pair
+#define lb lower_bound
+#define ub upper_bound
 #define fst first
 #define snd second
 #define str string
@@ -22,47 +24,38 @@ using vii = vector<int>;
 using vll = vector<ll>;
 using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
-
-//const ll MAXN = 2e5 + 10;
-bool can(ll t, vll &cnt){
-	ll com = 0, inc = 0;
-	fore(i, 0, sz(cnt)){
-		if(t>=cnt[i]){
-			inc += (t - cnt[i]) / 2;
-		} else {
-			com += cnt[i] - t;
-		}
-	}
-	return com<= inc;
-}
+ 
 void solve(){
-	ll n, m; cin>>n>>m; 
-	vll a(m); 
-	fore(i, 0, m) cin>>a[i];
-	vll cnt(m+1, 0);
-	// Binary sarch on the answer 
-	fore(i, 1, m+1){
-		cnt[a[i-1]]++;
-	} 
-	ll l = 0, r = (2*n) + 10, res = 0;
-	while(l<r){
-		ll mid = (l+r+ 1)/2;
-		if(can(mid, cnt)){
-			r = mid - 1;
-			res = mid;
-		}
-		else{
-			l = mid + 1;
-			res = mid;
-		}
+	ll n, m; cin>>n>>m;
+	multiset<ll> ms;
+	fore(i, 0, n){
+		ll msi; cin>>msi;
+		ms.insert(msi);
 	}
-	pri(res);
+	//forn(e, ms)cout<<e<<endl;
+	vii t(n); 
+	fore(i, 0, m){
+		ll ti; cin>>ti; 
+		auto it = ms.ub(ti);
+		ll r = -1;
+		if(it!= ms.begin()){
+			it--;
+		} else {
+			pri(r);
+			continue;
+		}
+		if(it!= ms.end()){
+			r = *it;
+			ms.erase(it);
+		} 
+		pri(r);
+	}
 }
  
 int main(){
     FIN; 
-    //int t = 1;
-    int t; cin>>t; 
+    int t = 1;
+    //int t; cin>>t; 
     while(t--){
 		solve();
 	}
