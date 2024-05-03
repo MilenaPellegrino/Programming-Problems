@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define fore(i,a,b) for(int i=(a);i<(b);i++)
+#define fore(i,a,b) for(ll i=(a);i<(b);i++)
 #define forr(i, a, b) for(int i=(b);i>(a);i--)
 #define forn(e,c) for(const auto &e : (c))
 #define db(x) cout<<#x<< " = "<<(x)<<endl
@@ -24,14 +24,32 @@ using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 // Min mas min = max(a0.. an)
+ll n; 
+bool can(ll x, vll &a){
+	ll cont=0; // Sup. disponibles
+	fore(i, 0, n){
+		if(x<a[i]) return false; 
+		cont+=x-a[i];
+	}
+	return cont>=x;
+}
 
 void solve(){
-	ll n; cin>>n; 
+	cin>>n; 
 	vll a(n); fore(i, 0, n) cin>>a[i]; 
-	sort(all(a)); 
-	cout<<a<<endl;
-	int maxe = a[n-1]; // Guardo las rondas minimas que se deberia jugar 
-	
+	//auto it = max_element(all(a));
+	//ll maxs = *it;
+	ll l = 0, r = 1e14, ans = 0; // 10^9 * 10^5 = 10^14
+	while(l<=r){
+		ll mid = (l+r)>>1; 
+		if(can(mid, a)){
+			ans = mid; 
+			r = mid-1;
+		} else {
+			l = mid + 1;
+		}
+	} 
+	pri(ans);
 }
  
 int main(){
