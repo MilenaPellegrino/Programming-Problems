@@ -8,10 +8,10 @@ using namespace std;
 #define all(x) (x).begin(),(x).end()
 #define pb push_back
 #define pp pop_back
+#define mp make_pair
 #define fst first
 #define snd second
 #define str string
-#define mp make_pair
 #define pri(x) cout << (x) << "\n"
 #define mset(a,v) memset((a),(v),sizeof(a))
 #define FIN ios::sync_with_stdio(0);cin.tie(0);cout.tie(0); 
@@ -23,31 +23,22 @@ using vll = vector<ll>;
 using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
+const ll MAXN = 1e5 + 10;
+ll n;
+ll dp[MAXN], h[MAXN];
+ll f(ll x){
+	ll &res = dp[x];
+	if (x==n-1) return 0;
+	if (x == n-2) return abs(h[n-1] - h[n-2]);
+	if (res!=-1) return res; 
+	else res = min(f(x+1) + abs(h[x+1] - h[x]), f(x+2) + abs(h[x+2] - h[x]));
+	return res;
+}
 void solve(){
-	ll n, m, k; cin>>n>>m>>k;
-	vll a(n);
-	fore(i, 0, n){
-		ll ai; cin>>ai;
-		//a[i] = ai-k;
-		a.pb(ai);
-	}
-	sort(all(a));
-	multiset<ll> b;
-	while(m--){
-		ll bi; cin>>bi;
-		b.insert(bi);
-	}
-	cout<<a<<endl;
-	int cont = 0;
-	fore(i, 0, n){
-		forn(e, b) cout<<e<<" ";
-		auto it = b.lower_bound(a[i]);
-		if((*it >= a[i]-k )&& (*it <= a[i]+k) && it != b.end()){
-			cont++;
-			b.erase(*it);
-		}
-	}
-	pri(cont);
+	cin>>n; 
+	mset(dp, -1);
+	fore(i, 0, n) cin>>h[i];
+	pri(f(0));
 }
  
 int main(){
@@ -55,7 +46,7 @@ int main(){
     int t = 1;
     //int t; cin>>t; 
     while(t--){
-			solve();
+		solve();
 	}
     return 0;
 }
