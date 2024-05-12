@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define fore(i,a,b) for(int i=(a);i<(b);i++)
+#define fore(i,a,b) for(ll i=(a);i<(b);i++)
 #define forr(i, a, b) for(int i=(b);i>(a);i--)
 #define forn(e,c) for(const auto &e : (c))
 #define db(x) cout<<#x<< " = "<<(x)<<endl
@@ -23,29 +23,35 @@ using vll = vector<ll>;
 using vpi = vector<pii>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
-const ll INF = 1e18 + 10;
-const ll MAXN = 2e5 + 10;
+const ll MAXN = 1e6 + 5;
+bool dp[MAXN];
 
-ll n;
-ll a[MAXN], dp[MAXN];
-
-ll f(ll x){ // Cantidad m inima de operaciones para hacer "a" beautiful desde x hasta n
-	if (x>n) return INF; // Para que nunca elija esta opcion al hacer min
-	if(x==n) return 0; //Ya es btf
-	ll &res = dp[x];
-	if(res!=-1) return res; // memo
-	res = min(f(x+1) + 1, f(x + a[x]+1)); // F(x+1) + 1 sacar el elemento de la posicion x
-	return res;							 // f(x+a[x]+1) hacer el segmento desde x + a[x] + 1 (la def del ejs)
-}
 void solve(){
-	cin>>n; 
-	fore(i, 0, n)cin>>a[i];
-	mset(dp, -1);
-	ll ans = f(0);
+    ll w, f; cin>>w>>f;
+    ll n; cin>>n;
+    mset(dp, false);
+    dp[0] = true;
+
+    ll sum = 0;
+    fore(i, 1, n+1){
+        ll x; cin>>x;
+        sum+=x;
+        for(int j = MAXN - 1; j >= x; j--) dp[j] |= dp[j - x];
+    } 
+    ll ans = 1e9;
+    //cout<<sum<<endl;
+    fore(i, 0, MAXN){
+        if(dp[i]){
+            ll c1 = max((i + w - 1)/w, (sum - i + f - 1)/f);
+            ll c2 = max((i + f - 1)/f, (sum - i + w - 1)/w); 
+            //db(c1); db(c2);
+            ll temp = min(c1, c2);
+            // db(temp);
+            ans = min(ans,temp);
+        }
+    }
 	pri(ans);
 }
- 
- 
  
 int main(){
     FIN; 
@@ -56,4 +62,3 @@ int main(){
 	}
     return 0;
 }
-
