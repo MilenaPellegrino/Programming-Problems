@@ -2,5 +2,11 @@
 *a.out
 *.out
 *.bin
+*.o
 *.vscode
 *.mypy_cache
+**/*.exe
+**/a.out
+**/*.out
+**/*.o
+ejs

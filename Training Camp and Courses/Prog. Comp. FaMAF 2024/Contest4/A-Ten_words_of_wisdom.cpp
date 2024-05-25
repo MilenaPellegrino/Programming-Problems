@@ -25,13 +25,25 @@ using vvll = vector<vector<ll>>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	
+	int n; cin>>n; 
+    int maxc = 0;
+    int res = -1;
+    fore(i, 0, n){
+        int a, b; cin>>a>>b;
+        if(a<=10){
+            if(maxc < b){
+                res = i+1;
+                maxc =b;
+            }
+        }
+    }
+    pri(res);
 }
  
 int main(){
     FIN; 
     //int t = 1;
-    //int t; cin>>t; 
+    int t; cin>>t; 
     while(t--){
 		solve();
 	}

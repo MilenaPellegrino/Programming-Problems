@@ -25,12 +25,16 @@ using vvll = vector<vector<ll>>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	
+	int n, m; cin>>n>>m;
+    fore(i, 0, m){
+        int u, v; cin>>u>>v;
+    }
+    pri(2*m);
 }
  
 int main(){
     FIN; 
-    //int t = 1;
+    int t = 1;
     //int t; cin>>t; 
     while(t--){
 		solve();

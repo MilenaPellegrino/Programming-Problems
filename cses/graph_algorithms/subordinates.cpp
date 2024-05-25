@@ -17,7 +17,7 @@ using namespace std;
 #define FIN ios::sync_with_stdio(0);cin.tie(0);cout.tie(0); 
 using ll = long long;
 using pii = pair<int,int>;
-using ii = pair<ll,ll>;
+using pll = pair<ll,ll>;
 using vii = vector<int>;
 using vll = vector<ll>;
 using vpi = vector<pii>;
@@ -25,12 +25,20 @@ using vvll = vector<vector<ll>>;
 template<class T>ostream&operator<<(ostream&o,vector<T>const&v){o<<"[ ";for(auto const&x:v)o<<x<<" ";return o<<"]";}
 
 void solve(){
-	
+	int n; cin>>n; 
+    vii e(n-1);
+    fore(i, 0, n-1)cin>>e[i];
+    vii p(n+1, 0);
+    fore(i, 0, n){
+        p[e[i]]++;
+    }
+    cout<<n-1<<" ";
+    fore(i, 1, n)cout<<p[i]<<" ";
 }
  
 int main(){
     FIN; 
-    //int t = 1;
+    int t = 1;
     //int t; cin>>t; 
     while(t--){
 		solve();
