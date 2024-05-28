@@ -39,13 +39,13 @@ void dijkstra(ll id, ll w) {
     priority_queue<ii, vector<ii>, greater<ii>> pq;
     pq.push({0, id});
     while (!pq.empty()) {
-        ll t = pq.top().second;
-        ll dist_t = pq.top().first;
+        ll t = pq.top().snd;
+        ll dist_t = pq.top().fst;
         pq.pop();
         if (dist_t > dis[t]) continue;
         for (auto x : h[t]) {
-            ll now = x.first;
-            ll len = x.second;
+            ll now = x.fst;
+            ll len = x.snd;
             if (len + dis[t] < dis[now]) {
                 dis[now] = len + dis[t];
                 pq.push({dis[now], now});
