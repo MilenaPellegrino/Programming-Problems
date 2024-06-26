@@ -1,58 +1,4 @@
 
-Funcion factorial 
-/*
- int fact(int n){
-		// if(n== 0)return 1;
-		// if(dp[n]!=-1){
-			// return dp[n]; 
-		// } else {
-			// dp[n] = n * fact(n-1);
-		// }
-		// return dp[n];
- }
- */
- 
-Elevar a ^ b
-/*
-ll power(ll base, ll exponent, ll mod = -1) {
-    if (exponent == 0) {
-        return 1;
-    } else if (exponent % 2 == 0) {
-        ll half_pow = power(base, exponent / 2, mod);
-        return (mod == -1) ? half_pow * half_pow : (half_pow * half_pow) % mod;
-    } else {
-        ll half_pow = power(base, (exponent - 1) / 2, mod);
-        return (mod == -1) ? base * half_pow * half_pow : (base * half_pow * half_pow) % mod;
-    }
-}
-*/
-
-Dividir dos enteros con redondeo hacia abajo
-/*
- * q es el cociente y r es el resto; 
-void floordiv(ll x, ll y, ll& q, ll& r) { // (for negative x)
-	q=x/y;r=x%y;
-	if((r!=0)&&((r<0)!=(y<0)))q--,r+=y;
-}
-* 
-ll div(ll x, ll y) { 
-	ll res = (x + y - 1) / y;
-	return res;
-}
-*/
-EL numero del exponente del factor de un num en la factorizacion de otro 
-/*
-
-ll cantFactores(ll n, ll f){
-	ll res = 0;
-	ll temp = f; 
-	while(temp<=n){
-		res += n/temp; 
-		temp *=f;
-	}
-	return res;
-}
-*/
 Encontrar el minimo numero que es divisible por b a partir de un num a 
 /*
 Por ejemplo con 10/4 me diria 12 que es el primero numero a partir de a por el cual es divisible
@@ -61,31 +7,6 @@ si a no es divisible por b, entonces el siguiente número que es divisible por b
  Este enfoque garantiza que el resultado sea divisible por b con la menor cantidad de incrementos posible.
 */
 
-Encontrar los divisores de un numeros
-/*
-vector<ll> res;
-for(ll i = 1; i * i <= n; i++){
-	if(n % i ==0){
-		res.pb(i);
-		if(i != n/i){
-			res.pb(n/i);
-		}
-	}
-}
-*/
-
- Encontrar los divisores de un numero teniendo la factorizacion en primos 
-/*
- void div_rec(vector<ll>& r, vector<pair<ll,int> >& f, int k, ll c){
-	if(k==f.size()){r.pb(c);return;}
-	fore(i,0,f[k].snd+1)div_rec(r,f,k+1,c),c*=f[k].fst;
-}
-vector<ll> divisors(vector<pair<ll,int> > f){
-	vector<ll> r; // returns divisors given factorization
-	div_rec(r,f,0,1);
-	return r;
-}
-*/
 
 Econtrar la factorizacion prima de un numero 
 /*
